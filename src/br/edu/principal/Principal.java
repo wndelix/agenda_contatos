@@ -22,9 +22,6 @@ public class Principal {
 			System.out.println("3 - Procurar Contato");
 			System.out.println("4 - Excluir Contato");
 			System.out.println("5 - Sair\n");
-
-			System.out.println(maxContacts);
-			System.out.println(contactCount);
 		
 			System.out.print("Selecione a opção desejada: ");
 			option = userInput.nextInt();
