@@ -6,6 +6,9 @@ bin/
 .metadata/
 .settings/
 
+# Idea
+.idea/
+
 # macOS
 .DS_Store
 
