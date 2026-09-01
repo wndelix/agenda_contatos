@@ -1,27 +1,28 @@
-# 📒 Agenda de Contatos
+# Agenda de Contatos
 
-Projeto de uma agenda de contatos desenvolvida em **Java** com o objetivo de praticar conceitos fundamentais da linguagem, estruturas de dados e organização de código.
+Projeto de uma agenda de contatos desenvolvida em **Java**, com o objetivo de praticar conceitos fundamentais da linguagem, estruturas de dados e manipulação de coleções.
 
-A aplicação funciona através do terminal e permite adicionar, listar, procurar e excluir contatos durante sua execução.
+A aplicação funciona através do terminal e permite cadastrar, visualizar, pesquisar, alterar e excluir contatos durante sua execução.
 
 ---
 
-## 📌 Novidades da versão 0.2.0
+## 📌 Novidades da versão 0.3.0
 
-A versão **0.2.0** substitui o armazenamento baseado em arrays por coleções dinâmicas utilizando `ArrayList`.
+A versão **0.3.0** adiciona suporte à **alteração de contatos já cadastrados**.
+
+Agora é possível pesquisar um contato pelo nome e substituir suas informações utilizando o método `set()` do `ArrayList`.
 
 ### Principais alterações
 
-* Migração de `String[]` para `ArrayList<String>`.
-* Remoção do limite fixo de contatos.
-* Uso de `add()` para adicionar novos contatos.
-* Uso de `get()` para acessar informações armazenadas.
-* Uso de `remove()` para excluir contatos.
-* Uso de `size()` para percorrer a lista.
-* Uso de `isEmpty()` para verificar se existem contatos cadastrados.
-* Simplificação do gerenciamento dos dados da agenda.
-
-Na versão anterior, a agenda possuía espaço limitado para armazenar contatos. Agora, as listas aumentam dinamicamente conforme novos contatos são adicionados.
+* Adição da opção **Alterar Contato** ao menu principal.
+* Busca do contato pelo nome antes da alteração.
+* Identificação do índice correspondente ao contato encontrado.
+* Alteração do nome utilizando `set()`.
+* Alteração do número de celular utilizando `set()`.
+* Alteração do e-mail utilizando `set()`.
+* Interrupção da busca após encontrar o primeiro contato correspondente.
+* Feedback ao usuário quando o contato não é encontrado.
+* Menu atualizado para seis opções.
 
 ---
 
@@ -32,12 +33,13 @@ Atualmente, a agenda permite:
 * Adicionar contatos.
 * Listar todos os contatos cadastrados.
 * Procurar contatos pelo nome.
-* Excluir contatos pelo nome.
-* Armazenar nome, número de telefone e e-mail.
+* Alterar contatos existentes.
+* Excluir contatos.
+* Armazenar nome, número de celular e e-mail.
 * Comparar nomes ignorando diferenças entre letras maiúsculas e minúsculas.
-* Adicionar contatos sem um limite fixo previamente definido.
+* Adicionar contatos sem um limite fixo.
 * Informar quando não existem contatos cadastrados.
-* Informar quando uma busca não encontra resultados.
+* Informar quando uma pesquisa não encontra resultados.
 
 ---
 
@@ -46,20 +48,21 @@ Atualmente, a agenda permite:
 Ao iniciar o programa, o seguinte menu é exibido:
 
 ```text
-Agenda de Contatos v.0.2.0
+Agenda de Contatos v.0.3.0
 
 1 - Adicionar Contato
 2 - Listar Contato
 3 - Procurar Contato
-4 - Excluir Contato
-5 - Sair
+4 - Alterar Contato
+5 - Excluir Contato
+6 - Sair
 
 Selecione a opção desejada:
 ```
 
 ### Adicionar contato
 
-O usuário informa:
+O usuário informa os dados do novo contato:
 
 ```text
 Nome: João
@@ -67,11 +70,13 @@ Número: 85999999999
 E-mail: joao@email.com
 ```
 
-Os dados são adicionados às listas correspondentes.
+Os dados são adicionados às listas correspondentes utilizando `add()`.
+
+---
 
 ### Listar contatos
 
-Todos os contatos cadastrados são exibidos:
+Todos os contatos cadastrados são percorridos e exibidos:
 
 ```text
 Contato 1
@@ -80,15 +85,17 @@ Celular: 85999999999
 E-mail : joao@email.com
 ```
 
+---
+
 ### Procurar contato
 
-A pesquisa é realizada pelo nome completo utilizando:
+A pesquisa é realizada pelo nome utilizando:
 
 ```java
 equalsIgnoreCase()
 ```
 
-Dessa forma, buscas como:
+Dessa forma, valores como:
 
 ```text
 João
@@ -96,24 +103,61 @@ JOÃO
 joão
 ```
 
-são consideradas equivalentes.
+são considerados equivalentes durante a pesquisa.
+
+---
+
+### Alterar contato
+
+A opção de alteração solicita inicialmente o nome do contato:
+
+```text
+Digite o nome que deseja procurar: João
+```
+
+Após encontrar o contato, o programa solicita os novos dados:
+
+```text
+Digite o novo nome: João Silva
+Digite o novo celular: 85988888888
+Digite o novo email: joaosilva@email.com
+```
+
+Os valores existentes são substituídos utilizando:
+
+```java
+contactsName.set(contactIndex, newContactName);
+contactsNumber.set(contactIndex, newContactNumber);
+contactsEmail.set(contactIndex, newContactEmail);
+```
+
+A busca é interrompida após encontrar o primeiro contato correspondente:
+
+```java
+if (contactsName.get(i).equalsIgnoreCase(contactNameSearch)) {
+    contactIndex = i;
+    break;
+}
+```
+
+Caso nenhum contato seja encontrado, o programa informa:
+
+```text
+Contato não encontrado!
+```
+
+---
 
 ### Excluir contato
 
-O programa procura o contato pelo nome e identifica sua posição nas listas.
+O programa procura o contato pelo nome e armazena seu índice.
 
-Ao encontrar o contato, os dados correspondentes são removidos de:
-
-```java
-contactsName
-contactsNumber
-contactsEmail
-```
-
-utilizando:
+Quando encontrado, os dados correspondentes são removidos das três listas:
 
 ```java
-remove(indexToDelete)
+contactsName.remove(contactIndex);
+contactsNumber.remove(contactIndex);
+contactsEmail.remove(contactIndex);
 ```
 
 ---
@@ -140,7 +184,7 @@ src/
             └── Principal.java
 ```
 
-O armazenamento dos contatos é realizado através de três listas:
+Os contatos são armazenados utilizando três listas:
 
 ```java
 List<String> contactsName = new ArrayList<>();
@@ -148,17 +192,19 @@ List<String> contactsNumber = new ArrayList<>();
 List<String> contactsEmail = new ArrayList<>();
 ```
 
-Cada posição representa um mesmo contato.
+Os dados relacionados a um mesmo contato compartilham o mesmo índice.
 
 Por exemplo:
 
 ```text
-Índice          0
-                │
-contactsName   João
-contactsNumber 85999999999
-contactsEmail  joao@email.com
+Índice              0
+                    │
+contactsName       João
+contactsNumber     85999999999
+contactsEmail      joao@email.com
 ```
+
+Assim, o índice `0` nas três listas representa um único contato.
 
 ---
 
@@ -166,9 +212,13 @@ contactsEmail  joao@email.com
 
 ### Eclipse
 
-1. Importe ou abra o projeto no Eclipse.
-2. Localize a classe `Principal.java`.
-3. Execute utilizando:
+Abra o projeto no Eclipse, localize:
+
+```text
+Principal.java
+```
+
+e execute utilizando:
 
 ```text
 Run As → Java Application
@@ -176,13 +226,13 @@ Run As → Java Application
 
 ### Terminal
 
-Entre no diretório `src` do projeto:
+Entre no diretório `src`:
 
 ```bash
 cd src
 ```
 
-Compile:
+Compile o programa:
 
 ```bash
 javac br/edu/principal/Principal.java
@@ -194,13 +244,11 @@ Execute:
 java br.edu.principal.Principal
 ```
 
-É necessário possuir o **JDK** instalado.
+É necessário possuir um **JDK** instalado no sistema.
 
 ---
 
 ## 🧠 Conceitos praticados
-
-O projeto utiliza diversos conceitos básicos de Java.
 
 ### Estruturas de controle
 
@@ -210,6 +258,7 @@ switch
 if
 else
 for
+break
 ```
 
 ### Entrada de dados
@@ -225,11 +274,12 @@ List
 ArrayList
 ```
 
-### Métodos de `ArrayList`
+### Métodos utilizados
 
 ```java
 add()
 get()
+set()
 remove()
 size()
 isEmpty()
@@ -241,7 +291,7 @@ isEmpty()
 equalsIgnoreCase()
 ```
 
-Também são praticados:
+Outros conceitos praticados incluem:
 
 * Variáveis.
 * Tipos primitivos.
@@ -250,20 +300,22 @@ Também são praticados:
 * Estruturas dinâmicas.
 * Percorrimento de listas.
 * Controle de fluxo.
+* Busca de elementos.
+* Alteração de valores armazenados.
 
 ---
 
 ## ⚠️ Limitações atuais
 
-Apesar das melhorias da versão 0.2.0, o projeto ainda possui algumas limitações.
-
 ### Dados armazenados apenas em memória
 
-Os contatos deixam de existir quando o programa é encerrado.
+Os contatos cadastrados existem apenas enquanto o programa está em execução.
 
-Ainda não existe persistência utilizando arquivos ou banco de dados.
+Ao encerrar a aplicação, os dados são perdidos.
 
-### Informações separadas em três listas
+---
+
+### Dados separados em três listas
 
 Cada contato depende do mesmo índice em:
 
@@ -273,62 +325,40 @@ contactsNumber
 contactsEmail
 ```
 
-Isso funciona para o estágio atual do projeto, mas não representa a melhor organização para uma aplicação maior.
+Essa abordagem atende às necessidades atuais do projeto, mas pode se tornar mais difícil de manter conforme a aplicação crescer.
 
-### Busca somente pelo nome completo
+---
 
-A busca utiliza:
+### Pesquisa baseada no nome completo
+
+A pesquisa utiliza:
 
 ```java
 equalsIgnoreCase()
 ```
 
-Portanto, ainda não é possível pesquisar apenas parte de um nome.
+Por isso, é necessário informar o nome completo do contato para encontrá-lo.
 
 ---
 
-## 🚀 Próximos passos
+### Contatos com nomes repetidos
 
-Com a migração para `ArrayList` concluída, os próximos passos do projeto podem focar na organização do código utilizando orientação a objetos.
+É possível cadastrar mais de um contato com o mesmo nome.
 
-Uma possível estrutura futura é:
-
-```text
-src/
-└── br/
-    └── edu/
-        ├── principal/
-        │   └── Principal.java
-        │
-        ├── model/
-        │   └── Contato.java
-        │
-        └── service/
-            └── Agenda.java
-```
-
-### Melhorias planejadas
-
-* Criar uma classe `Contato`.
-* Agrupar nome, telefone e e-mail em um único objeto.
-* Criar uma classe responsável pelo gerenciamento da agenda.
-* Separar a interface do terminal da lógica da aplicação.
-* Adicionar edição de contatos.
-* Melhorar o sistema de busca.
-* Validar entradas do usuário.
-* Implementar persistência dos contatos.
+Na alteração, o primeiro contato correspondente encontrado é selecionado.
 
 ---
 
 ## 📈 Evolução do projeto
 
-| Versão  | Alterações                                                                    |
-| ------- | ----------------------------------------------------------------------------- |
-| `0.0.0` | Implementação inicial da agenda                                               |
-| `0.1.0` | Suporte a múltiplos contatos utilizando arrays, listagem, pesquisa e exclusão |
-| `0.2.0` | Migração para `ArrayList` e remoção do limite fixo de contatos                |
+| Versão  | Alterações                                                                            |
+| ------- | ------------------------------------------------------------------------------------- |
+| `0.0.0` | Implementação inicial da agenda                                                       |
+| `0.1.0` | Suporte a múltiplos contatos utilizando arrays, além de listagem, pesquisa e exclusão |
+| `0.2.0` | Migração para `ArrayList` e remoção do limite fixo de contatos                        |
+| `0.3.0` | Adição da funcionalidade de alteração de contatos utilizando `set()`                  |
 
-A evolução do projeto acompanha o aprendizado de novos conceitos da linguagem Java.
+A evolução do projeto acompanha o aprendizado gradual de novos conceitos da linguagem Java.
 
 ---
 
@@ -340,4 +370,5 @@ Este projeto possui finalidade educacional.
 
 ## 🎓 Objetivo
 
-O principal objetivo deste projeto é acompanhar a evolução do aprendizado em **Java**, começando com estruturas simples e aprimorando gradualmente a arquitetura da aplicação conforme novos conceitos são estudados.
+O principal objetivo deste projeto é acompanhar o aprendizado em **Java**, aplicando novos conceitos progressivamente em uma aplicação simples e funcional.
+
