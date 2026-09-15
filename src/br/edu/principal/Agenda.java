@@ -3,7 +3,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Agenda {
-
     public static void adicionaContato(Scanner userInput, List<String> nomesContatos, List<String> numerosContatos, List<String> emailsContatos) {
         System.out.println("═════════════ Adicionar Contato ═════════════");
 
