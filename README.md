@@ -1,4 +1,4 @@
-```markdown
+
 # Agenda de Contatos
 
 Projeto de uma agenda de contatos desenvolvida em **Java**, com o objetivo de praticar conceitos fundamentais da linguagem, estruturas de dados, manipulação de coleções e modularização de código.
@@ -347,4 +347,3 @@ O principal objetivo deste projeto é acompanhar o aprendizado em **Java**, apli
 
 ```
 
-```
