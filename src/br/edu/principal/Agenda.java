@@ -61,6 +61,7 @@ public class Agenda {
 
                     contatoEncontrado = true;
                 }
+                System.out.println("-".repeat(45));
             }
             
             if (!contatoEncontrado) {
