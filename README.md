@@ -50,12 +50,10 @@ Para cadastrar um contato, são solicitados nome, telefone e e-mail:
 
 ```text
 ═════════════ Adicionar Contato ═════════════
-
-Nome: Ana Souza
-Telefone / Celular: (85) 98888-7777
-E-mail: ana.souza@email.com
-
-Contato adicionado.
+Digite o nome: Ana Souza
+Digite o celular: (85) 98888-7777
+Digite o e-mail: ana.souza@email.com
+Contato Ana Souza foi adicionado com sucesso.
 ```
 
 ### Pesquisa
@@ -64,13 +62,12 @@ A pesquisa é realizada pelo nome e utiliza `equalsIgnoreCase()`, permitindo loc
 
 ```text
 ══════════════ Procurar Contato ═════════════
-
 Digite o nome que deseja procurar: Ana Souza
-
-Contato Encontrado:
-Nome   : Ana Souza
+---------------------------------------------
+   Nome: Ana Souza
 Celular: (85) 98888-7777
-E-mail : ana.souza@email.com
+ E-mail: ana.souza@email.com
+---------------------------------------------
 ```
 
 ### Alteração
@@ -79,13 +76,11 @@ A aplicação permite substituir os dados de um contato existente:
 
 ```text
 ══════════════ Alterar Contato ══════════════
-
 Digite o nome que deseja procurar: Ana Souza
 Digite o novo nome: Ana Clara Souza
 Digite o novo celular: (85) 99999-8888
-Digite o novo email: anaclara@email.com
-
-Contato alterado com sucesso!
+Digite o novo e-mail: anaclara@email.com
+Contato alterado com sucesso.
 ```
 
 ### Exclusão
@@ -94,9 +89,7 @@ Um contato pode ser localizado pelo nome e removido da agenda:
 
 ```text
 ══════════════ Excluir Contato ══════════════
-
 Digite o nome do contato que deseja excluir: Ana Clara Souza
-
 Contato excluído com sucesso.
 ```
 
