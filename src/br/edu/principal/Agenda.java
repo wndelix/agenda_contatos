@@ -6,35 +6,37 @@ public class Agenda {
     public static void adicionaContato(Scanner userInput, List<String> nomesContatos, List<String> numerosContatos, List<String> emailsContatos) {
         System.out.println("═════════════ Adicionar Contato ═════════════");
 
-        System.out.print("Nome: ");
+        System.out.print("Digite o nome: ");
         String nomeContato = userInput.nextLine();
-
-        System.out.print("Telefone / Celular: ");
+        
+        System.out.print("Digite o celular: ");
         String numeroContato = userInput.nextLine();
 
-        System.out.print("E-mail: ");
+        System.out.print("Digite o e-mail: ");
         String emailContato = userInput.nextLine();
 
         nomesContatos.add(nomeContato);
         numerosContatos.add(numeroContato);
         emailsContatos.add(emailContato);
 
-        System.out.println("Contato adicionado.\n");
+        System.out.println("Contato " + nomeContato + " foi adicionado com sucesso.");
     }
 
     public static void listarContato(List<String> nomesContatos, List<String> numerosContatos, List<String> emailsContatos) {
         System.out.println("══════════════ Listar Contatos ══════════════");
 
         if (nomesContatos.isEmpty()) {
-            System.out.println("Nenhum contato cadastrado.\n");
-        } else {
+            System.out.println("Nenhum contato cadastrado.");
+        } 
+        
+        else {
             for (int i = 0; i < nomesContatos.size(); i++) {
-                System.out.println("\nContato " + (i + 1));
-                System.out.println("Nome   : " + nomesContatos.get(i));
+                System.out.println("-".repeat(45));
+                System.out.println("   Nome: " + nomesContatos.get(i));
                 System.out.println("Celular: " + numerosContatos.get(i));
-                System.out.println("E-mail : " + emailsContatos.get(i));
+                System.out.println(" E-mail: " + emailsContatos.get(i));
             }
-            System.out.println();
+            System.out.println("-".repeat(45));
         }
     }
 
@@ -42,26 +44,27 @@ public class Agenda {
         System.out.println("══════════════ Procurar Contato ═════════════");
 
         if (nomesContatos.isEmpty()) {
-            System.out.println("Nenhum contato cadastrado.\n");
-        } else {
+            System.out.println("Nenhum contato cadastrado.");
+        } 
+        
+        else {
             System.out.print("Digite o nome que deseja procurar: ");
             String contatoNomeBusca = userInput.nextLine();
             boolean contatoEncontrado = false;
 
             for (int i = 0; i < nomesContatos.size(); i++) {
                 if (nomesContatos.get(i).equalsIgnoreCase(contatoNomeBusca)) {
-                    System.out.println("\nContato Encontrado:");
-                    System.out.println("Nome   : " + nomesContatos.get(i));
+                	System.out.println("-".repeat(45));
+                    System.out.println("   Nome: " + nomesContatos.get(i));
                     System.out.println("Celular: " + numerosContatos.get(i));
-                    System.out.println("E-mail : " + emailsContatos.get(i));
-                    System.out.println();
+                    System.out.println(" E-mail: " + emailsContatos.get(i));
 
                     contatoEncontrado = true;
                 }
             }
-
+            
             if (!contatoEncontrado) {
-                System.out.println("Contato não encontrado.\n");
+                System.out.println("Contato não encontrado.");
             }
         }
     }
@@ -70,7 +73,7 @@ public class Agenda {
         System.out.println("══════════════ Alterar Contato ══════════════");
 
         if (nomesContatos.isEmpty()) {
-            System.out.println("Nenhum contato cadastrado para alterar.\n");
+            System.out.println("Nenhum contato cadastrado.");
             return;
         }
 
@@ -92,16 +95,18 @@ public class Agenda {
             System.out.print("Digite o novo celular: ");
             String novoNumeroContato = userInput.nextLine();
 
-            System.out.print("Digite o novo email: ");
+            System.out.print("Digite o novo e-mail: ");
             String novoEmailContato = userInput.nextLine();
 
             nomesContatos.set(contatoIndice, novoNomeContato);
             numerosContatos.set(contatoIndice, novoNumeroContato);
             emailsContatos.set(contatoIndice, novoEmailContato);
 
-            System.out.println("\nContato alterado com sucesso!\n");
-        } else {
-            System.out.println("Contato não encontrado!\n");
+            System.out.println("Contato alterado com sucesso.");
+        } 
+        
+        else {
+            System.out.println("Contato não encontrado.");
         }
     }
 
@@ -109,8 +114,10 @@ public class Agenda {
         System.out.println("══════════════ Excluir Contato ══════════════");
 
         if (nomesContatos.isEmpty()) {
-            System.out.println("Nenhum contato cadastrado.\n");
-        } else {
+            System.out.println("Nenhum contato cadastrado.");
+        } 
+        
+        else {
             System.out.print("Digite o nome do contato que deseja excluir: ");
             String contatoNomeBusca = userInput.nextLine();
             int contatoIndice = -1;
@@ -123,13 +130,15 @@ public class Agenda {
             }
 
             if (contatoIndice == -1) {
-                System.out.println("Nenhum contato encontrado.\n");
-            } else {
+                System.out.println("Nenhum contato encontrado.");
+            } 
+            
+            else {
                 nomesContatos.remove(contatoIndice);
                 numerosContatos.remove(contatoIndice);
                 emailsContatos.remove(contatoIndice);
 
-                System.out.println("Contato excluído com sucesso.\n");
+                System.out.println("Contato excluído com sucesso.");
             }
         }
     }

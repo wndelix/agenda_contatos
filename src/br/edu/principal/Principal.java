@@ -26,7 +26,8 @@ public class Principal {
 				case 3  -> Agenda.procurarContato(userInput, nomesContatos, numerosContatos, emailsContatos);
 				case 4  -> Agenda.alterarContato(userInput, nomesContatos, numerosContatos, emailsContatos);
 				case 5  -> Agenda.excluirContato(userInput, nomesContatos, numerosContatos, emailsContatos);
-				case 6  -> {
+				case 6  -> Utils.sobre();
+				case 7  -> {
 					System.out.println("Saindo...");
 					userContinue = false;
 				}

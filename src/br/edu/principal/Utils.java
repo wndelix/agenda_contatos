@@ -19,7 +19,8 @@ public class Utils {
         System.out.println("3 - Procurar Contato");
         System.out.println("4 - Alterar Contato");
         System.out.println("5 - Excluir Contato");
-        System.out.println("6 - Sair");
+        System.out.println("6 - Sobre");
+        System.out.println("7 - Sair");
         System.out.println();
     }
 
