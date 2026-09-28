@@ -1,6 +1,7 @@
 package br.edu.principal;
+
+import javax.swing.*;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 
 public class Utils {
     public static void mostrarIntro() {
